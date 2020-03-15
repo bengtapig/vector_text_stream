@@ -109,15 +109,3 @@ def show_text(robot, text, color=(233, 139, 51, 255), font_size=50, position='ce
         # Show image
         robot.screen.set_screen_with_image_data(screen_data, 1 / render_hz)
         time.sleep(1 / render_hz)
-
-
-if __name__ == "__main__":
-
-    args = anki_vector.util.parse_command_args()
-    with anki_vector.Robot(args.serial) as robot:
-        # If necessary, move Vector's Head and Lift to make it easy to see his face
-        robot.behavior.set_head_angle(anki_vector.util.degrees(25.0))
-        robot.behavior.set_lift_height(0.0)
-
-        # Show current track info on Vector's face
-        show_text(robot, 'Morning Aire / Tommy Emanuel')
