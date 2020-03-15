@@ -6,5 +6,5 @@ Let's show long texts or sentences on the Vector's screen with sliding animation
 - `pip install vector_text_stream`
 
 ## License
-This software, except for the folder /fonts, is released under the MIT License. See LICENSE.
-The folder /fonts is released under the sony original license. See /fonts/LICENSE.
+- This software, except for the folder /fonts, is released under the MIT License. See LICENSE.
+- The folder /fonts is released under the sony original license. See /fonts/LICENSE.
