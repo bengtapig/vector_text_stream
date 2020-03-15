@@ -25,7 +25,7 @@ SCREEN_HEIGHT = 96
 
 # Font
 DIRNAME = os.path.dirname(__file__)
-FONT_PATH = os.path.abspath(os.path.join(DIRNAME, '../fonts/JF-Dot-jiskan24.ttf'))
+FONT_PATH = os.path.abspath(os.path.join(DIRNAME, 'fonts/JF-Dot-jiskan24.ttf'))
 
 
 def make_entire_text_image(text, color=(233, 139, 51, 255), font_size=50, position='center'):
@@ -46,6 +46,7 @@ def make_entire_text_image(text, color=(233, 139, 51, 255), font_size=50, positi
     Returns:
         image {PIL.Image} -- Image with the text rendered on it.
     """
+    print("Read font file from {}".format(FONT_PATH))
     font = ImageFont.truetype(FONT_PATH, font_size)
     text_size = font.getsize(text)
     try:

@@ -22,5 +22,7 @@ setup(
     install_requires=read_requirements(),
     url='https://github.com/ryosakagami/vector_text_stream',
     license='MIT License',
-    packages=find_packages()
+    packages=find_packages(),
+    package_data={'vector_text_stream': ['fonts/JF-Dot-jiskan24.ttf', 'fonts/LICENSE', 'fonts/README.md']},
+    include_package_data=True
 )
