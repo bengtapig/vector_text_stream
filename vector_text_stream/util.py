@@ -97,6 +97,8 @@ def show_text(robot, text, color=(233, 139, 51, 255), font_size=50, position='ce
     print("Entire duration: {} seconds".format(entire_duration_s))
     print("Total rendering times: {}".format(render_number))
 
+    screen_data_list = []
+
     for i in range(render_number):
         # Calculate start px
         px = int(pixel_per_sec / render_hz) * i
@@ -106,6 +108,9 @@ def show_text(robot, text, color=(233, 139, 51, 255), font_size=50, position='ce
         # Convert to the format for Vector
         screen_data = anki_vector.screen.convert_image_to_screen_data(
             text_image)
+        screen_data_list.append(screen_data)
+
+    for screen_data in screen_data_list:
         # Show image
         robot.screen.set_screen_with_image_data(screen_data, 1 / render_hz)
         time.sleep(1 / render_hz)
