@@ -72,21 +72,7 @@ def make_entire_text_image(text, color=(233, 139, 51, 255), font_size=50, positi
     draw.text((SCREEN_WIDTH, v_pos), text, fill=color, font=font)
     return image
 
-
-def show_text(robot, text, color=(233, 139, 51, 255), font_size=50, position='center', pixel_per_sec=400):
-    """Function to show text with sliding animation on Vector's screen.
-
-    Arguments:
-        robot {anki_vector.Robot} -- Instance of Vector robot.
-        text {string} -- Text to show on Vector's screen.
-
-    Keyword Arguments:
-        color {tuple} -- Color of the text (default: {(233, 139, 51, 255)}).
-        font_size {int} -- Size of the font (default: {50}).
-        position {str} -- Vertical position of text in the image.
-                          Valid options are 'top', 'center', or 'bottom' (default: {'center'}).
-        pixel_per_sec {int} -- Moving speed of the text. Unit is pixel per second. (default: {400})
-    """
+def prepare_screen_data_list(text, color=(233, 139, 51, 255), font_size=50, position='center', pixel_per_sec=400, render_hz=10):
     entire_text_image = make_entire_text_image(
         text, color=color, font_size=font_size, position='center')
     render_hz = 20
@@ -114,8 +100,29 @@ def show_text(robot, text, color=(233, 139, 51, 255), font_size=50, position='ce
     #       The process is equivalent to the above the block comment.
     screen_data_list = [anki_vector.screen.convert_image_to_screen_data(entire_text_image.crop(
             (int(pixel_per_sec / render_hz) * i, 0, int(pixel_per_sec / render_hz) * i + SCREEN_WIDTH, SCREEN_HEIGHT))) for i in range(render_number)]
+    return screen_data_list
 
+
+def render_screen_data_list(robot, screen_data_list, render_hz=10):
     for screen_data in screen_data_list:
         # Show image
         robot.screen.set_screen_with_image_data(screen_data, 1 / render_hz)
         time.sleep(1 / render_hz)
+
+
+def show_text(robot, text, color=(233, 139, 51, 255), font_size=50, position='center', pixel_per_sec=400, render_hz=10):
+    """Function to show text with sliding animation on Vector's screen.
+
+    Arguments:
+        robot {anki_vector.Robot} -- Instance of Vector robot.
+        text {string} -- Text to show on Vector's screen.
+
+    Keyword Arguments:
+        color {tuple} -- Color of the text (default: {(233, 139, 51, 255)}).
+        font_size {int} -- Size of the font (default: {50}).
+        position {str} -- Vertical position of text in the image.
+                          Valid options are 'top', 'center', or 'bottom' (default: {'center'}).
+        pixel_per_sec {int} -- Moving speed of the text. Unit is pixel per second. (default: {400})
+    """
+    screen_data_list = prepare_screen_data_list(text, color, font_size, position, pixel_per_sec, render_hz)
+    render_screen_data_list(robot, screen_data_list, render_hz)
