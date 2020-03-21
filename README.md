@@ -1,6 +1,8 @@
 # vector_text_stream
 Let's show long texts or sentences on the Vector's screen with sliding animation!
 
+![alt text](docs/concept.gif "Concept")
+
 ## Install
 - clone this repo
 - `cd /path/to/this/repo`

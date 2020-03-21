@@ -10,8 +10,9 @@ def main():
         robot.behavior.set_lift_height(0.0)
 
         # Show current track info on Vector's face
-        show_text(robot, 'Hello World! This is a test script to show '
-        'a relatively long string on the screen of Vector.')
+        # show_text(robot, 'Hello World! This is a test script to show '
+        # 'a relatively long string on the screen of Vector.')
+        show_text(robot, "Hello World!")
 
 
 if __name__ == "__main__":
